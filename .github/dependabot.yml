@@ -1,0 +1,37 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    # Look for `package.json` and `lock` files in the `root` directory
+    directory: "/"
+    # Check the npm registry for updates every day (weekdays)
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 10
+    # Raise all npm pull requests with custom labels
+    labels:
+      - "npm dependencies"
+    commit-message:
+      prefix: requirements
+    reviewers:
+      - "ukanga"
+      - "bennsimon"
+      - "machariamuguku"
+      - "p-netm"
+
+  - package-ecosystem: docker
+    # Look for `Dockerfile` files in the `root` directory
+    directory: "/"
+    # Check the npm registry for updates every day (weekdays)
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 10
+    # Raise all npm pull requests with custom labels
+    labels:
+      - "npm dependencies"
+    commit-message:
+      prefix: requirements
+    reviewers:
+      - "ukanga"
+      - "bennsimon"
+      - "machariamuguku"
+      - "p-netm"
