@@ -1,7 +1,53 @@
+# services:
+#   web:
+#     build: .
+#     ports:
+#       - "3000:3000"
+#     environment: 
+#       - "API_URL=production.example.com"
+# docker-compose.yml
+
+version: '3.9'
 services:
-  web:
-    build: .
+  fhir-web:
+    image: opensrp/web:v3.1.3
     ports:
-      - "3000:3000"
-    environment: 
-      - "API_URL=production.example.com"
+      - '3000:3000'
+    volumes:
+      # volume with React front-end environment variables
+      - ./config.js.tpl:/etc/confd/templates/config.js.tmpl
+    environment:
+      # optional overrides
+      - 'NODE_ENV=production' # 'NODE_ENV=development' if fhir-web-base-url === http://localhost:3000
+      - 'EXPRESS_ALLOW_TOKEN_RENEWAL=true'
+      - 'EXPRESS_OPENSRP_LOGOUT_URL=null'
+      - 'EXPRESS_REACT_BUILD_PATH=/usr/src/web'
+
+      # keycloak
+      - 'EXPRESS_OPENSRP_CLIENT_ID=<keycloak-client-id>'
+      - 'EXPRESS_OPENSRP_CLIENT_SECRET=<keycloak-client-secret>'
+      - 'EXPRESS_OPENSRP_ACCESS_TOKEN_URL=<keycloak-base-url>/auth/realms/<keycloak-realm>/protocol/openid-connect/token'
+      - 'EXPRESS_OPENSRP_AUTHORIZATION_URL=<keycloak-base-url>/auth/realms/<keycloak-realm>/protocol/openid-connect/auth'
+      - 'EXPRESS_KEYCLOAK_LOGOUT_URL=<keycloak-base-url>/auth/realms/<keycloak-realm>/protocol/openid-connect/logout'
+      - 'EXPRESS_OPENSRP_USER_URL=<keycloak-base-url>/auth/realms/<keycloak-realm>/protocol/openid-connect/userinfo'
+
+      # fhir web
+      - 'EXPRESS_OPENSRP_CALLBACK_URL=http://localhost:3000/oauth/callback/OpenSRP/'
+      - 'EXPRESS_FRONTEND_OPENSRP_CALLBACK_URL=http://localhost:3000/fe/oauth/callback/opensrp'
+      - 'EXPRESS_SERVER_LOGOUT_URL=http://localhost:3000/logout'
+
+      # UUID's
+      - 'EXPRESS_SESSION_SECRET=<randomly-generated-secret-string>'
+
+      # content security policy configuration
+      # remove optional-sentry-base-url config block if your deployment has no sentry
+      - 'EXPRESS_CONTENT_SECURITY_POLICY_CONFIG={"connect-src":["''self''","<optional-sentry-base-url>","<keycloak-base-url>","<fhir-server-base-url>"],"default-src":["''self''"],"img-src":["''self''","https://github.com/opensrp/","https://*.githubusercontent.com/opensrp/"]}'
+      # to disable CSP
+      # - 'EXPRESS_CONTENT_SECURITY_POLICY_CONFIG=false'
+
+    # optional sentry config
+    # - 'EXPRESS_RESPONSE_HEADERS={"report-to":", {endpoints:[{url:https://<optional-sentry-base-url>/api/<optional-sentry-projectId>/security/?sentry_key=<optional-sentry-key>\\u0026sentry_environment=<optional-sentry-environment>\\u0026sentry_release=<optional-sentry-release-name>}],group:csp-endpoint,max_age:10886400}"}'
+
+    # optional redis and redis sentinel session store config (use either or neither not both)
+    # - 'EXPRESS_REDIS_STAND_ALONE_URL=redis://username:password@redis-base-url:port/db'
+    # - 'EXPRESS_REDIS_SENTINEL_CONFIG={"name":"sentinelMasterName","sentinelPassword":"sentinelMasterPassword","sentinels":[{"host":"sentinel-node-1-base-url","port":"12345"},{"host":"sentinel-node-2-base-url","port":"12345"},{"host":"sentinel-node-3-base-url","port":"12345"}]}'
