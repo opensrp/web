@@ -50,6 +50,13 @@ exports[`Care Teams list view renders correctly: table row 1 page 1 6`] = `
 >
   <span
     class="d-flex align-items-center"
-  />
+  >
+    <a
+      class="m-0 p-1"
+      href="/importDetail/26aae779-0e6f-482d-82c3-a0fad1fd3689_orgToLocationAssignment"
+    >
+      View
+    </a>
+  </span>
 </td>
 `;

@@ -4,6 +4,7 @@ import {
   ProjectCode,
   setAllConfigs,
   getAllConfigs,
+  clientIdConfig,
 } from '@opensrp/pkg-config';
 import {
   BACKEND_ACTIVE,
@@ -17,6 +18,7 @@ import {
   AUTHZ_STRATEGY,
   COMMODITIES_LIST_RESOURCE_ID,
   FHIR_INVENTORY_LIST_ID,
+  OPENSRP_CLIENT_ID,
 } from './env';
 import { URL_BACKEND_LOGIN, URL_REACT_LOGIN } from '../constants';
 
@@ -26,6 +28,7 @@ const defaultvalues = getAllConfigs();
 
 const configObject: ConfigState = {
   ...defaultvalues,
+  [clientIdConfig]: OPENSRP_CLIENT_ID,
   languageCode: LANGUAGE_CODE as LanguageCode,
   projectCode: PROJECT_CODE as ProjectCode,
   appLoginURL: APP_LOGIN_URL,

@@ -1,14 +1,14 @@
 import { store } from '@opensrp/store';
 import { Provider } from 'react-redux';
 import React from 'react';
-import { RoleContext, UserRole, FhirResources, Permit, IamResources } from '@opensrp/rbac';
+import { RoleContext, UserRole, Permit, allSupportedRoles } from '@opensrp/rbac';
 import { history } from '@onaio/connected-reducer-registry';
 import { Router } from 'react-router';
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-export const superUserRole = new UserRole([...FhirResources, ...IamResources], Permit.MANAGE);
+export const superUserRole = new UserRole(allSupportedRoles, Permit.MANAGE);
 
 export interface ContextProviderProps {
   children: JSX.Element;

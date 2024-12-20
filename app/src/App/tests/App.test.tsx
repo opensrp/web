@@ -60,7 +60,7 @@ describe('App - unauthenticated', () => {
       </ContextProvider>
     );
     // before resolving get oauth state request, the user is logged out
-    expect(wrapper.text()).toMatchInlineSnapshot(`"AdministrationLogin"`);
+    expect(wrapper.text()).toMatchInlineSnapshot(`"AdministrationData ImportsLogin"`);
 
     await act(async () => {
       await flushPromises();
@@ -175,7 +175,7 @@ describe('App - authenticated', () => {
     );
     // before resolving get oauth state request, the user is logged out
     expect(wrapper.text()).toMatchInlineSnapshot(
-      `"AdministrationdemoWelcome to OpenSRPUser ManagementQuestionnaire Management"`
+      `"AdministrationData ImportsdemoWelcome to OpenSRPUser ManagementQuestionnaire ManagementData Imports"`
     );
 
     await act(async () => {

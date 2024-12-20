@@ -1,11 +1,9 @@
 import {
-  AuthZResource,
-  KeycloakDefinedResources,
-  IamResources,
+  allSupportedRoles,
   Permit,
   PermitKey,
   ResourcePermitMap,
-  WebCustomResources,
+  AllSupportedRoles,
 } from '../constants';
 import invariant from 'invariant';
 
@@ -22,15 +20,6 @@ export function makeArray<T>(obj: T | T[]): T[] {
   return asArray;
 }
 
-// TODO - this is not actually lowercased
-const lowerCasedAuthZResources = [
-  ...IamResources,
-  ...KeycloakDefinedResources,
-  ...WebCustomResources,
-].map(
-  (tag) => tag
-  // tag.toLowerCase()
-) as string[];
 export const permitLiteralKeys = Object.keys(Permit).map((x) => x.toLowerCase());
 
 /**
@@ -45,8 +34,7 @@ export function validatePermissionStr(permission: string) {
     return false;
   }
   const [resource, permit] = parts;
-  // const resourceIsRecognized = lowecasedAuthZResourceTags.includes(resource.toLowerCase());
-  const resourceIsRecognized = lowerCasedAuthZResources.includes(resource);
+  const resourceIsRecognized = allSupportedRoles.includes(resource as AllSupportedRoles);
   const permitIsRecognized = permitLiteralKeys.includes(permit.toLowerCase());
   if (!resourceIsRecognized || !permitIsRecognized) {
     return false;
@@ -68,7 +56,7 @@ export function parsePermissionStr(permissions: string[]) {
       `Permission string: '${permission}' is not internally recognized as a valid permission string.`
     );
     const parts = permission.split('.');
-    const resource = parts[0] as AuthZResource;
+    const resource = parts[0] as AllSupportedRoles;
     const permit = Permit[parts[1].toUpperCase() as PermitKey];
     newMap.set(resource, permit);
     return newMap;

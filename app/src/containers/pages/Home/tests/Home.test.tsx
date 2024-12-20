@@ -66,6 +66,7 @@ describe('containers/pages/Home', () => {
       'Location Management',
       'Organization Management',
       'Questionnaire Management',
+      'Data Imports',
     ]);
     links.forEach((link) => {
       expect(link).toMatchSnapshot(link.textContent ?? undefined);

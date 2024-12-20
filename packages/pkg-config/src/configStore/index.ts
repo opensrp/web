@@ -1,6 +1,6 @@
 /** stores configuration for any other package */
 import { createGlobalState } from 'react-hooks-global-state';
-import { USER_PREFERENCE_KEY } from '../constants';
+import { clientIdConfig, USER_PREFERENCE_KEY } from '../constants';
 import { PaginationProps } from 'antd/lib/pagination/Pagination';
 
 export const supportedLanguageCodes = ['en', 'sw', 'fr', 'ar', 'th', 'vi'] as const;
@@ -31,6 +31,7 @@ export interface TableState {
 
 /** interface for configs for this package */
 export interface ConfigState {
+  [clientIdConfig]?: string;
   languageCode?: LanguageCode;
   projectCode?: ProjectCode;
   appLoginURL?: string;
@@ -58,7 +59,8 @@ export enum PractToOrgAssignmentStrategy {
   ONE_TO_MANY = 'ONE_TO_MANY', // one practitioner assignable to multiple organizations
 }
 
-const defaultConfigs: GlobalState = {
+const defaultConfigs: Partial<GlobalState> = {
+  [clientIdConfig]: undefined,
   languageCode: 'en',
   appLoginURL: undefined,
   keycloakBaseURL: undefined,

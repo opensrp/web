@@ -1,11 +1,11 @@
-import { AuthZResource, BinaryNumber, ResourcePermitMap } from '../constants';
+import { AllSupportedRoles, BinaryNumber, ResourcePermitMap } from '../constants';
 import { MatchStrategy } from '../helpers/types';
 import { combineResourcePermits, makeArray, parsePermissionStr } from '../helpers/utils';
 
 export class UserRole {
   private permissions: ResourcePermitMap;
 
-  constructor(resource: AuthZResource | AuthZResource[] = [], verb?: BinaryNumber) {
+  constructor(resource: AllSupportedRoles | AllSupportedRoles[] = [], verb?: BinaryNumber) {
     const newMap = new Map();
     if (!verb) {
       this.permissions = newMap;
@@ -68,7 +68,7 @@ export class UserRole {
     if (!mapEntries.length) {
       return;
     }
-    const last = mapEntries.pop() as [AuthZResource, number];
+    const last = mapEntries.pop() as [AllSupportedRoles, number];
     const resourceType = last[0];
     const verb = last[1];
     const newRole = new UserRole(resourceType, verb);

@@ -83,6 +83,16 @@ Array [
       </Link>
     </MenuItem>
   </SubMenu>,
+  <MenuItem
+    icon={<UploadIcon />}
+  >
+    <Link
+      className="admin-link"
+      to="/import"
+    >
+      Data Imports
+    </Link>
+  </MenuItem>,
 ]
 `;
 
@@ -169,6 +179,16 @@ Array [
       </Link>
     </MenuItem>
   </SubMenu>,
+  <MenuItem
+    icon={<UploadIcon />}
+  >
+    <Link
+      className="admin-link"
+      to="/import"
+    >
+      Data Imports
+    </Link>
+  </MenuItem>,
 ]
 `;
 
@@ -300,6 +320,16 @@ Object {
             </Link>
           </MenuItem>
         </SubMenu>
+        <MenuItem
+          icon={<UploadIcon />}
+        >
+          <Link
+            className="admin-link"
+            to="/import"
+          >
+            Data Imports
+          </Link>
+        </MenuItem>
       </Menu>
     </div>,
     null,
@@ -389,5 +419,15 @@ Array [
       </Link>
     </MenuItem>
   </SubMenu>,
+  <MenuItem
+    icon={<UploadIcon />}
+  >
+    <Link
+      className="admin-link"
+      to="/import"
+    >
+      Data Imports
+    </Link>
+  </MenuItem>,
 ]
 `;

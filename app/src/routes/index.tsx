@@ -199,7 +199,7 @@ export function getRoutes(roles: string[], t: TFunction, userRole: UserRole): Ro
       title: t('Data Imports'),
       key: 'data-import',
       enabled: true,
-      permissions: ['WebDataImport.read'],
+      permissions: ['DataImport.read'],
       url: DATA_IMPORT_LIST_URL,
       isHomePageLink: true,
     },

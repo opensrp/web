@@ -1,5 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`containers/pages/Home renders Home correctly & changes Title of page 2: Data Imports 1`] = `
+<button
+  class="ant-btn css-dev-only-do-not-override-k7429z ant-btn-link admin-link btn-links"
+  type="button"
+>
+  <span>
+    Data Imports
+  </span>
+</button>
+`;
+
 exports[`containers/pages/Home renders Home correctly & changes Title of page 2: Location Management 1`] = `
 <button
   class="ant-btn css-dev-only-do-not-override-k7429z ant-btn-link admin-link btn-links"

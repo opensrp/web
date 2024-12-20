@@ -81,7 +81,7 @@ export const DataImportList = () => {
       // eslint-disable-next-line react/display-name
       render: (_: unknown, record: WorkflowDescription) => (
         <span className="d-flex align-items-center">
-          <RbacCheck permissions={['WebDataImport.read']}>
+          <RbacCheck permissions={['DataImport.read']}>
             <>
               <Link
                 to={`${DATA_IMPORT_DETAIL_URL}/${record.workflowId.toString()}`}
@@ -118,7 +118,7 @@ export const DataImportList = () => {
         <Col className="main-content">
           <div className="main-content__header">
             <div />
-            <RbacCheck permissions={['WebDataImport.create']}>
+            <RbacCheck permissions={['DataImport.create']}>
               <Link to={DATA_IMPORT_CREATE_URL}>
                 <Button type="primary" onClick={() => history.push(DATA_IMPORT_CREATE_URL)}>
                   <CloudUploadOutlined />
