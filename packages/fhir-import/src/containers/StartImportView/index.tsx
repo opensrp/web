@@ -4,9 +4,11 @@ import { ImporterFormInstructions } from './formInstructions';
 import { BodyLayout } from '@opensrp/react-utils';
 import { Row, Col } from 'antd';
 import { DataImportForm } from './form';
+import { useTranslation } from '../../mls';
 
 export const StartDataImport = () => {
-  const pageTitle = 'Data imports';
+  const { t } = useTranslation();
+  const pageTitle = t('Data imports');
   const headerProps = {
     pageHeaderProps: {
       title: pageTitle,

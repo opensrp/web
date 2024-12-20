@@ -43,9 +43,9 @@ export const GroupGridFilerRow = (props: GroupGridFilerRowProps) => {
                 }
               }}
             >
-              <Radio.Button value={true}>{t('Yes')}</Radio.Button>
-              <Radio.Button value={false}>{t('No')}</Radio.Button>
-              <Radio.Button value={undefined}>{t('Show all')}</Radio.Button>
+              <Radio.Button value={true}>Yes</Radio.Button>
+              <Radio.Button value={false}>No</Radio.Button>
+              <Radio.Button value={undefined}>Show all</Radio.Button>
             </Radio.Group>
           </Space>
         </Trans>
@@ -71,9 +71,9 @@ export const GroupGridFilerRow = (props: GroupGridFilerRowProps) => {
                 }
               }}
             >
-              <Radio.Button value={true}>{t('Active')}</Radio.Button>
-              <Radio.Button value={false}>{t('Inactive')}</Radio.Button>
-              <Radio.Button value={undefined}>{t('Show all')}</Radio.Button>
+              <Radio.Button value={true}>Active</Radio.Button>
+              <Radio.Button value={false}>Inactive</Radio.Button>
+              <Radio.Button value={undefined}>Show all</Radio.Button>
             </Radio.Group>
           </Space>
         </Trans>

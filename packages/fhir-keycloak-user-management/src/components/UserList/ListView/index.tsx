@@ -148,9 +148,9 @@ export const UserList = (props: OrganizationListProps) => {
                       }
                     }}
                   >
-                    <Radio.Button value={true}>{t('Enabled')}</Radio.Button>
-                    <Radio.Button value={false}>{t('Disabled')}</Radio.Button>
-                    <Radio.Button value={undefined}>{t('Show all')}</Radio.Button>
+                    <Radio.Button value={true}>Enabled</Radio.Button>
+                    <Radio.Button value={false}>Disabled</Radio.Button>
+                    <Radio.Button value={undefined}>Show all</Radio.Button>
                   </Radio.Group>
                 </Space>
               </Trans>

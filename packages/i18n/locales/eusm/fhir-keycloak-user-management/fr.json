@@ -38,7 +38,7 @@
   "Group resource updated successfully": "La ressource du groupe a été mise à jour avec succès",
   "Id": "ID",
   "ID": "ID",
-  "keycloakUserStatusFilter": "<0>Statut:<1><0>{t('Activé')}</0><1>{t('Désactivé')}</1><2>{t('Afficher tout')}</2></1></0>",
+  "keycloakUserStatusFilter": "<0>Statut:<1><0>Activé</0><1>Désactivé</1><2>Afficher tout</2></1></0>",
   "Last name": "Nom",
   "Last Name": "Nom",
   "Leave": "Quitter",
