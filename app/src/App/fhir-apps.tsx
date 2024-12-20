@@ -501,7 +501,7 @@ const FHIRApps = () => {
         redirectPath={APP_CALLBACK_URL}
         disableLoginProtection={DISABLE_LOGIN_PROTECTION}
         path={LIST_HEALTHCARE_URL}
-        permissions={['HealthCareList.read']}
+        permissions={['HealthcareService.read']}
         component={HealthCareList}
       />
       <PrivateComponent
