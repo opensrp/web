@@ -14,8 +14,8 @@ ENV NODE_OPTIONS --max_old_space_size=4096
 RUN chown -R node .
 USER node
 
-RUN cp /project/app/.env.sample /project/app/.env \
-  && yarn
+RUN cp /project/app/.env.sample /project/app/.env
+RUN yarn
 
 USER root
 RUN chown -R node .
