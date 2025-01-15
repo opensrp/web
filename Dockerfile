@@ -15,6 +15,7 @@ RUN chown -R node .
 USER node
 
 RUN cp /project/app/.env.sample /project/app/.env
+RUN corepack enable
 RUN yarn
 
 USER root
@@ -23,7 +24,7 @@ USER node
 RUN yarn lerna run build
 
 
-FROM node:20-alpine as nodejsbuild
+FROM nikolaik/python-nodejs:python3.13-nodejs22-slim as nodejsbuild
 
 RUN corepack enable
 
@@ -34,7 +35,6 @@ RUN yarn && yarn tsc && npm prune -production --legacy-peer-deps
 
 # Remove unused dependencies
 RUN rm -rf ./node_modules/typescript
-
 
 
 FROM nikolaik/python-nodejs:python3.13-nodejs22-slim as final
