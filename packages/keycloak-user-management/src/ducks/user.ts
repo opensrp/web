@@ -59,9 +59,9 @@ export interface KeycloakUser {
   email?: string;
   emailVerified?: boolean;
   enabled?: boolean;
-  firstName: string;
+  firstName?: string;
   id: string;
-  lastName: string;
+  lastName?: string;
   nationalId?: string;
   phoneNumber?: string;
   notBefore?: number;

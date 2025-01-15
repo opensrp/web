@@ -25,7 +25,7 @@ const keyValueDetailRender = (obj: IGroup, t: TFunction) => {
     [t('Id')]: id,
     [t('Name')]: name,
     [t('Active')]: active ? t('Active') : t('Inactive'),
-    [t('Last updated')]: t('{{val, datetime}}', { val: new Date(lastUpdated) }),
+    [t('Last Updated')]: t('{{val, datetime}}', { val: new Date(lastUpdated) }),
     [t('No. of Members')]: quantity,
     [t('Members')]: members?.map((member) => member.entity.display).join(', '),
   };

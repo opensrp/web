@@ -21,9 +21,10 @@ import { BodyLayout } from '@opensrp/react-utils';
 import { getExtraData } from '@onaio/session-reducer';
 import { KeycloakUser } from '@opensrp/user-management';
 import { useSelector } from 'react-redux';
-import { Trans, useTranslation } from '@opensrp/i18n';
+import { Trans } from '@opensrp/i18n';
 import { RbacCheck, useUserRole } from '@opensrp/rbac';
 import { UserDetailsOverview } from '../ViewdetailsOverview';
+import { useTranslation } from '../../../mls';
 
 interface OrganizationListProps {
   fhirBaseURL: string;

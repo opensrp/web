@@ -1,0 +1,21 @@
+{
+  "(Auto generated)": "(Auto généré)",
+  "Active": "Actif",
+  "An error occurred while fetching the inventory": "Une erreur s'est produite lors de l'extraction de l'inventaire.",
+  "Close App": "Fermer l'application",
+  "Error Occurred When Closing Flag": "Une erreur s'est produite lors de la fermeture du signalement d'un problème.",
+  "Error occurred while trying to fetch flag data": "Une erreur s'est produite lors de l'extraction des données du signalement de problèmes",
+  "Error occurred while trying to fetch practitioners data": "Une erreur s'est produite lors de la recherche de données sur les praticiens.",
+  "Flag Closed successfully": "Signalement de problème fermé avec succès",
+  "How was the flag resolved?": "Comment le problème a-t-il été résolu ?",
+  "Inactive": "Inactif",
+  "Invalid Flag": "Signalement de problème non valide",
+  "Missing  location field. This information is required to close the flag form.": "Champ de localisation manquant. Cette information est nécessaire pour fermer le formulaire de signalement.",
+  "Missing Required permissions to perform this action": "Missing Required permissions to perform this action",
+  "Product": "Produit",
+  "Save": "Sauvegarder",
+  "Saving": "Sauvegarde",
+  "Select flag status": "Sélectionner le statut du signalement",
+  "Service Point": "Point de service",
+  "Status": "Statut"
+}

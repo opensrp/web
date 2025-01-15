@@ -33,8 +33,6 @@
   "Successfully updated CareTeams": "Mise à jour réussi de Care Teams",
   "There was a problem creating the Care Team": "Un problème est survenu lors de la création de la Care Team",
   "There was a problem deleting the Care Team": "Un problème est survenu lors de la suppression de la Care Team",
-  "There was a problem fetching organizations": "Un problème est survenu lors de la recherche de l'organisation",
-  "There was a problem fetching practitioners": "Il y a eu un problème pour trouver des praticiens.",
   "There was a problem fetching the Care Team": "Un problème est survenu lors de la recherche de la Care Team",
   "There was a problem updating the Care Team": "Un problème est survenu lors de la mise à jour du Care Team",
   "UUID": "UUID",

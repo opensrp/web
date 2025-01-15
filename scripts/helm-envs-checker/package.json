@@ -1,11 +1,10 @@
 {
-  "name": "@opensrp/scripts-i18n",
+  "name": "@opensrp/scripts-helm-envs-checker",
   "packageManager": "yarn@3.6.1",
-  "type": "module",
   "bin": "cli.js",
   "devDependencies": {
-    "gulp": "^5.0.0",
-    "i18next-parser": "^9.0.2"
+    "js-yaml": "^4.1.0",
+    "typescript": "^5.7.2"
   },
   "engines": {
     "node": ">=22"

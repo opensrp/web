@@ -4,7 +4,7 @@ import { authenticateUser } from '@onaio/session-reducer';
 import { Route, Router, Switch } from 'react-router';
 import nock from 'nock';
 import * as reactQuery from 'react-query';
-import { waitForElementToBeRemoved, render, cleanup } from '@testing-library/react';
+import { waitForElementToBeRemoved, render, cleanup, screen } from '@testing-library/react';
 import { store } from '@opensrp/store';
 import * as constants from '../../../constants';
 import { createMemoryHistory } from 'history';
@@ -100,11 +100,11 @@ describe('Care Teams list view', () => {
     await waitForElementToBeRemoved(document.querySelector('.ant-spin'));
     expect(nock.pendingMocks()).toEqual([]);
 
-    expect(document.querySelector('title')).toMatchInlineSnapshot(`
-      <title>
-        View details | 26aae779-0e6f-482d-82c3-a0fad1fd3689_orgToLocationAssignment 
-      </title>
-    `);
+    expect(
+      screen.getByTitle(
+        'View details | 26aae779-0e6f-482d-82c3-a0fad1fd3689_orgToLocationAssignment'
+      )
+    ).toBeInTheDocument();
 
     expect(
       (document.querySelector('.view-details-container') as HTMLElement).textContent

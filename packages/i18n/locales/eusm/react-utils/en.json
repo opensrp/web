@@ -1,10 +1,13 @@
 {
   "404": "404",
   "Actions": "Actions",
+  "Class": "",
+  "Date created": "",
   "Error": "Error",
   "Fetching next page": "Fetching next page",
   "Go back": "Go back",
   "Go home": "Go home",
+  "ID": "",
   "Load more options": "Load more options",
   "No data": "No data",
   "No data available": "No data available",
@@ -13,6 +16,7 @@
   "Something went wrong": "Something went wrong",
   "Sorry, the resource you requested for, does not exist": "Sorry, the resource you requested for, does not exist",
   "Sorry, you are not authorized to access this page": "Sorry, you are not authorized to access this page",
+  "status": "",
   "Unable to load dropdown options.": "Unable to load dropdown options.",
   "View details": "View details"
 }

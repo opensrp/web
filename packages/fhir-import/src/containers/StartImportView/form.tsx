@@ -142,7 +142,7 @@ export const DataImportForm = (props: DataImportFormProps) => {
     {
       formFieldName: orgToLocationAssignment,
       label: t('Organization location assignment'),
-      UploadBtnText: 'Attach assignment file',
+      UploadBtnText: t('Attach assignment file'),
       permissions: ['OrganizationAffiliation.create', 'OrganizationAffiliation.update'],
     },
     {

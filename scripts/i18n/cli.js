@@ -55,7 +55,6 @@ yargs(hideBin(process.argv))
         });
     },
     async (argv) => {
-      console.log({ argv });
       await runExtractions(argv);
     }
   )

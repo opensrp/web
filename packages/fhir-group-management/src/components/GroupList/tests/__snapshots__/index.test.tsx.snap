@@ -44,7 +44,7 @@ exports[`renders correctly when listing resources 6`] = `
   class="singleKeyValue-pair__default"
 >
   <dt>
-    Last updated
+    Last Updated
   </dt>
   <dd>
     4/27/2022

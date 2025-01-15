@@ -66,7 +66,7 @@ export const newPractitioner = {
     },
   ],
   active: true,
-  name: [{ use: 'official', family: 'plotus', given: ['flotus', ''] }],
+  name: [{ use: 'official', family: 'plotus', given: ['flotus'] }],
   telecom: [{ system: 'email', value: 'flotus@plotus.duck' }],
 };
 
@@ -84,7 +84,7 @@ export const newPractitionerRole = {
   active: true,
   practitioner: {
     reference: 'Practitioner/c1d36d9a-b771-410b-959e-af2c04d132a2',
-    display: 'Demoflotus  kenyaplotus',
+    display: 'Demoflotus kenyaplotus',
   },
   code: [
     {
@@ -189,7 +189,7 @@ export const updatedPractitioner = {
     },
   ],
   active: true,
-  name: [{ use: 'official', family: 'kenyaplotus', given: ['Demoflotus', ''] }],
+  name: [{ use: 'official', family: 'kenyaplotus', given: ['Demoflotus'] }],
   telecom: [{ system: 'email', value: 'test@onatest.comflotus@plotus.duck' }],
 };
 
@@ -228,7 +228,7 @@ export const extraFieldsPractitioner = {
     },
   ],
   active: true,
-  name: [{ use: 'official', family: 'kenyaplotus', given: ['Demoflotus', ''] }],
+  name: [{ use: 'official', family: 'kenyaplotus', given: ['Demoflotus'] }],
   telecom: [
     { system: 'email', value: 'test@onatest.comflotus@plotus.duck' },
     { system: 'phone', value: '0700123456', use: 'mobile' },
@@ -270,7 +270,7 @@ export const updatedExtraFieldsPractitioner = {
     },
   ],
   active: true,
-  name: [{ use: 'official', family: 'plotus', given: ['flotus', ''] }],
+  name: [{ use: 'official', family: 'plotus', given: ['flotus'] }],
   telecom: [
     { system: 'email', value: 'flotus@plotus.duck' },
     { system: 'phone', value: '0700123456', use: 'mobile' },
@@ -450,7 +450,7 @@ export const updatedPractitionerRole = {
   active: true,
   practitioner: {
     reference: 'Practitioner/c1d36d9a-b771-410b-959e-af2c04d132a2',
-    display: 'Demoflotus  kenyaplotus',
+    display: 'Demoflotus kenyaplotus',
   },
   code: [
     {

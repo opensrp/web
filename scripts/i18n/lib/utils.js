@@ -7,7 +7,7 @@ import * as fs from 'fs';
 // Get __filename and __dirname equivalents
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-export const REPO_ROOT_PATH = path.resolve(__dirname, '..');
+export const REPO_ROOT_PATH = path.resolve(__dirname, '../../../');
 
 export const promisedGlob = promisify(glob);
 
@@ -32,7 +32,7 @@ export const getLocaleFilePaths = async (projectCode, locale) => {
  * @param {string} locale informs which local files to pick under the project code namespace
  * @Returns {string[]} - matched paths
  */
-export const getLocaleFolderPaths = async (projectCode, locale) => {
+export const getLocaleFolderPaths = async (projectCode) => {
   const workspacesGlob = `packages/i18n/locales/${projectCode}/*/`;
   return promisedGlob(workspacesGlob, { cwd: REPO_ROOT_PATH }).catch(() => {
     return [];
@@ -47,8 +47,7 @@ export function ensureFilePath(filePath) {
   const dirPath = path.dirname(filePath); // Extract the directory path
   try {
     if (!fs.existsSync(dirPath)) {
-      fs.mkdirSync(dirPath, { recursive: true }); // Create the directory if it doesn't exist
-      console.log(`Directory ensured: ${dirPath}`);
+      fs.mkdirSync(dirPath, { recursive: true });
     }
   } catch (error) {
     console.error(`Error ensuring file path: ${error.message}`);

@@ -10,7 +10,7 @@ Read more on how fhir-web structures internationalization in this [guide]()
 
 ```shell
 # pwd is repo root.
-cd scripts
+cd scripts/i18n
 
 # enable corepack to better manage node js package managers
 corepack enable
@@ -19,9 +19,9 @@ corepack enable
 yarn install
 
 # Extract all translatable strings to i18n package, eusm project to both english and french resource files
-./i18n/cli.js extract --project eusm -l en,fr
+./cli.js extract --project eusm -l en,fr
 # Extract translatable strings from the fhir-clients package to i18n package > eusm project > fhir-clients namespace> english resource file
-./i18n/cli.js extract fhir-clients --project eusm -l en
+./cli.js extract fhir-clients --project eusm -l en
 ```
 
 Consider a scenario where you have a view say `fhir-location-management.ListView` that is re-used in more than two places with different semantics. Now how would one support translations if the 2 views should show different set of texts within the same language.
@@ -32,7 +32,7 @@ To generate a new namespace for a module
 
 ```shell
 # Extract translatable strings from the fhir-locations package to i18n package > eusm project> fhir-service-points namespace > english resource file
-./i18n/cli.js extract fhir-locations --project eusm -l en --output-namespace fhir-service-points
+./cli.js extract fhir-locations --project eusm -l en --output-namespace fhir-service-points
 ```
 
 **Download Translations**
@@ -41,7 +41,7 @@ Merges previously extracted translations into a single duplicate-free translatio
 
 ```shell
 # pwd is repo root.
-cd scripts
+cd scripts/i18n
 
 # enable corepack to better manage node js package managers
 corepack enable
@@ -50,7 +50,7 @@ corepack enable
 yarn install
 
 # Downloads all extracted strings in all the generated english resource files in the eusm project.
-./i18n/cli.js download --project eusm -l en
+./cli.js download --project eusm -l en
 ```
 
 **Upload Translations**
@@ -59,7 +59,7 @@ Undoes a download operation. Takes a translated resource file, unravels the tran
 
 ```shell
 # pwd is repo root.
-cd scripts
+cd scripts/i18n
 
 # enable corepack to better manage node js package managers
 corepack enable
@@ -68,5 +68,5 @@ corepack enable
 yarn install
 
 # Downloads all extracted strings in all the generated english resource files in the eusm project.
-./i18n/cli.js upload --project eusm -l en -tfile <file-path-to-resource-file>
+./cli.js upload --project eusm -l en -tfile <file-path-to-resource-file>
 ```

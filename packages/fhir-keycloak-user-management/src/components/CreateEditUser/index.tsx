@@ -278,7 +278,7 @@ export const practitionerUpdater =
         {
           use: IdentifierUseCodes.OFFICIAL,
           family: values.lastName,
-          given: [values.firstName, ''],
+          given: values.firstName ? [values.firstName] : [],
         },
       ],
       telecom: values.phoneNumber

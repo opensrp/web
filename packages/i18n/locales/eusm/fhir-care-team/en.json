@@ -33,8 +33,6 @@
   "Successfully updated CareTeams": "Successfully updated CareTeams",
   "There was a problem creating the Care Team": "There was a problem creating the Care Team",
   "There was a problem deleting the Care Team": "There was a problem deleting the Care Team",
-  "There was a problem fetching organizations": "There was a problem fetching organizations",
-  "There was a problem fetching practitioners": "There was a problem fetching practitioners",
   "There was a problem fetching the Care Team": "There was a problem fetching the Care Team",
   "There was a problem updating the Care Team": "There was a problem updating the Care Team",
   "UUID": "UUID",

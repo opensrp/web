@@ -1,10 +1,13 @@
 {
   "404": "404",
   "Actions": "Actions",
+  "Class": "Catégorie",
+  "Date created": "Date de création",
   "Error": "Erreur",
   "Fetching next page": "Consultation de la page suivante",
   "Go back": "Retour",
   "Go home": "Retour à l'accueil",
+  "ID": "ID",
   "Load more options": "Charger plus d'options",
   "No data": "Aucune donnée",
   "No data available": "Pas de données disponibles",
@@ -13,6 +16,7 @@
   "Something went wrong": "Quelque chose n'a pas fonctionné",
   "Sorry, the resource you requested for, does not exist": "Désolé, la ressource demandée n'existe pas.",
   "Sorry, you are not authorized to access this page": "Désolé, vous n'êtes pas autorisé à accéder à cette page",
+  "status": "Statut",
   "Unable to load dropdown options.": "Impossible de charger les options de la liste déroulante.",
   "View details": "Voir les détails"
 }
