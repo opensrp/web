@@ -54,7 +54,7 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: |
-            pnetm/fhir-web
+            opensrp/fhir-web
           tags: |
             type=ref,event=branch,key=main,tag=latest
             type=ref,event=branch,pattern=release/*,group=1
