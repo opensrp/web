@@ -73,4 +73,4 @@ EXPOSE 3000
 
 CMD [ "/bin/sh", "-c", "/usr/local/bin/app.sh && node /usr/src/app/dist" ]
 
-ENTRYPOINT ["/sbin/tini", "--"]
+ENTRYPOINT ["/bin/tini", "--"]
