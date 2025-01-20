@@ -16,7 +16,9 @@ export const Coding = (props: CodingProps) => {
     valueStr += display;
   }
   if (system) {
-    valueStr += `(${system}|${code ? code : ''})`;
+    let systemStr = system ? `${system}|` : '';
+    systemStr = systemStr ? `(${systemStr}${code ? code : ''})` : '';
+    valueStr += systemStr;
   }
-  return <Text>{valueStr}</Text>;
+  return <Text data-testid="coding-string">{valueStr}</Text>;
 };

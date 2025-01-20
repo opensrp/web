@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { CareTeamForm } from '../Form';
 import { defaultInitialValues, getCareTeamFormFields } from '../utils';
 import { cleanup, fireEvent, waitFor, render, screen } from '@testing-library/react';
@@ -21,7 +21,7 @@ import { store } from '@opensrp/store';
 import { authenticateUser } from '@onaio/session-reducer';
 import { QueryClientProvider, QueryClient } from 'react-query';
 import { Router } from 'react-router';
-import { createMemoryHistory } from 'history';
+import { createMemoryHistory, MemoryHistory } from 'history';
 
 jest.mock('@opensrp/notifications', () => ({
   __esModule: true,
@@ -49,9 +49,13 @@ const queryClient = new QueryClient({
   },
 });
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const AppWrapper = ({ children }: { children: any }) => {
-  const history = createMemoryHistory();
+const AppWrapper = ({
+  children,
+  history = createMemoryHistory(),
+}: {
+  children: ReactNode;
+  history?: MemoryHistory;
+}) => {
   return (
     <Router history={history}>
       <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
@@ -230,6 +234,73 @@ test('1157 - editing care team works corectly', async () => {
   await waitFor(() => {
     expect(successNoticeMock.mock.calls).toEqual([['Successfully updated CareTeams']]);
   });
+
+  expect(nock.isDone()).toBeTruthy();
+});
+
+test('Errors out with message and cancel redirects correctly', async () => {
+  const history = createMemoryHistory();
+  const errorNoticeMock = jest
+    .spyOn(notifications, 'sendErrorNotification')
+    .mockImplementation(() => undefined);
+
+  const preloadScope = nock(props.fhirBaseURL)
+    .get(`/${organizationResourceType}/_search`)
+    .query({ _getpagesoffset: '0', _count: '20' })
+    .reply(200, organizations)
+    .get(`/${practitionerResourceType}/_search`)
+    .query({ _getpagesoffset: '0', _count: '20' })
+    .reply(200, practitioners);
+
+  nock(props.fhirBaseURL)
+    .put(`/${careTeamResourceType}/${createdCareTeam2.id}`, createdCareTeam2)
+    .replyWithError('Not taking requests at this time')
+    .persist();
+
+  render(
+    <AppWrapper history={history}>
+      <CareTeamForm {...props} />
+    </AppWrapper>
+  );
+
+  await waitFor(() => {
+    expect(preloadScope.pendingMocks()).toEqual([]);
+  });
+  await waitFor(() => {
+    expect(screen.getByText(/Create Care Team/)).toBeInTheDocument();
+  });
+
+  const nameInput = screen.getByLabelText('Name') as Element;
+  userEvents.type(nameInput, 'care team');
+
+  const activeStatusRadio = screen.getByLabelText('Active');
+  expect(activeStatusRadio).toBeChecked();
+
+  const inactiveStatusRadio = screen.getByLabelText('Inactive');
+  expect(inactiveStatusRadio).not.toBeChecked();
+  userEvents.click(inactiveStatusRadio);
+
+  const practitionersInput = screen.getByLabelText('Practitioner Participant');
+  fireEvent.mouseDown(practitionersInput);
+  fireEvent.click(screen.getByTitle('Ward N 2 Williams MD'));
+
+  const managingOrgsSelect = screen.getByLabelText('Managing organizations');
+  fireEvent.mouseDown(managingOrgsSelect);
+  fireEvent.click(screen.getByTitle('Test Team 70'));
+
+  const saveBtn = screen.getByRole('button', { name: 'Save' });
+  userEvents.click(saveBtn);
+
+  await waitFor(() => {
+    expect(errorNoticeMock.mock.calls).toEqual([['There was a problem creating the Care Team']]);
+  });
+
+  // cancel form
+  const cancelButton = screen.getByRole('button', {
+    name: /cancel/i,
+  });
+  fireEvent.click(cancelButton);
+  expect(history.location.pathname).toEqual('/admin/CareTeams');
 
   expect(nock.isDone()).toBeTruthy();
 });

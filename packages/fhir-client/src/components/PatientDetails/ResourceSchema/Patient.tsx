@@ -1,7 +1,7 @@
 import React from 'react';
 import { IPatient } from '@smile-cdr/fhirts/dist/FHIR-R4/interfaces/IPatient';
 import { sorterFn } from '../../../helpers/utils';
-import { getPatientName, getPatientStatus, patientStatusColor } from '../../PatientsList/utils';
+import { getPatientName, getPatientStatus } from '../../PatientsList/utils';
 import { Button, Tag, Typography } from 'antd';
 import { Column, ResourceDetailsProps, dateToLocaleString } from '@opensrp/react-utils';
 import type { TFunction } from '@opensrp/i18n';
@@ -145,15 +145,15 @@ export function patientDetailsProps(
     [t('Address')]: get(resource, 'address.0.line.0') || 'N/A',
     [t('Country')]: get(resource, 'address.0.country'),
   };
-  const patientStatus = getPatientStatus(active as boolean, deceasedBoolean as boolean);
+  const patientStatus = getPatientStatus(active as boolean, deceasedBoolean as boolean, t);
   return {
     title: patientName,
     headerRightData,
     headerLeftData,
     bodyData,
     status: {
-      title: patientStatus,
-      color: patientStatusColor[patientStatus],
+      title: patientStatus.title,
+      color: patientStatus.color,
     },
   };
 }

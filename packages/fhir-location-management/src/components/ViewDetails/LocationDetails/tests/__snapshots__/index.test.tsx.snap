@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GeometryRender Component renders valid JSON string formatted 1`] = `
+<pre
+  style="max-height: 60px; max-width: 120px; overflow: auto; border: 1px solid #ddd; padding: 4px;"
+>
+  {
+  "key": "value"
+}
+</pre>
+`;

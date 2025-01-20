@@ -31,7 +31,9 @@ export class UserRole {
           return false;
         }
 
-        if (this.permissions.get(key) && value === 0) {
+        const thiPermissionsValue = this.permissions.get(key);
+        const thisPermissionIsSubset = !!(thiPermissionsValue && thiPermissionsValue < value);
+        if (thisPermissionIsSubset || (this.permissions.get(key) && value === 0)) {
           return false;
         }
       }

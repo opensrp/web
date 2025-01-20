@@ -6,7 +6,7 @@ import { parseLocationDetails } from '../utils';
 import { RbacCheck } from '@opensrp/rbac';
 import { EditLink } from '../../EditLink';
 
-const GeometryRender = ({ geometry }: { geometry?: string }) => {
+export const GeometryRender = ({ geometry }: { geometry?: string }) => {
   let formattedGeo = geometry ?? '';
   try {
     formattedGeo = JSON.stringify(JSON.parse(formattedGeo), undefined, 2);

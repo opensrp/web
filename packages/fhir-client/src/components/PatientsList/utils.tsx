@@ -2,6 +2,7 @@ import { Dictionary } from '@onaio/utils';
 import get from 'lodash/get';
 import { IPatient } from '@smile-cdr/fhirts/dist/FHIR-R4/interfaces/IPatient';
 import { parseFhirHumanName } from '@opensrp/react-utils';
+import { TFunction } from '@opensrp/i18n';
 
 export enum PatientStatus {
   ACTIVE = 'Active',
@@ -9,17 +10,11 @@ export enum PatientStatus {
   DECEASED = 'Deceased',
 }
 
-export const patientStatusColor = {
-  [PatientStatus.ACTIVE]: 'green',
-  [PatientStatus.InACTIVE]: 'gray',
-  [PatientStatus.DECEASED]: 'red',
-};
-
 /**
  * util to extract patient name
  *
  * @param patient - patient object
- * @returns {string[]} - returns an array of name strings
+ * @returns - returns an array of name strings
  */
 export function getPatientName(patient?: IPatient) {
   if (!patient) {
@@ -27,21 +22,6 @@ export function getPatientName(patient?: IPatient) {
   }
   const name = patient.name?.[0];
   return parseFhirHumanName(name);
-}
-
-/**
- * Walks thru an object (ar array) and returns the value found at the provided
- * path. This function is very simple so it intentionally does not support any
- * argument polymorphism, meaning that the path can only be a dot-separated
- * string. If the path is invalid returns undefined.
- *
- * @param {Object} obj The object (or Array) to walk through
- * @param {string} path The path (eg. "a.b.4.c")
- * @returns {*} Whatever is found in the path or undefined
- */
-export function getPath(obj: Dictionary, path = '') {
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-  return path.split('.').reduce((out, key) => (out ? out[key] : undefined), obj);
 }
 
 /**
@@ -59,8 +39,8 @@ export function getObservationLabel(obj: Dictionary): string {
 /**
  * Function to get observation value quantity
  *
- * @param {Object} obj - resource object
- * @returns {string} - returns value string
+ * @param obj - resource object
+ * @returns - returns value string
  */
 export function buildObservationValueString(obj: Dictionary): string {
   let quantValue = '';
@@ -82,15 +62,16 @@ export function buildObservationValueString(obj: Dictionary): string {
 /**
  * Function to get patient status based on active and deceased status
  *
- * @param {boolean} isActive - Patient active status
- * @param {boolean} isDeceased - Patient deceased status
+ * @param isActive - Patient active status
+ * @param isDeceased - Patient deceased status
+ * @param t - translator function
  */
-export const getPatientStatus = (isActive: boolean, isDeceased: boolean) => {
+export const getPatientStatus = (isActive: boolean, isDeceased: boolean, t: TFunction) => {
   if (isDeceased) {
-    return PatientStatus.DECEASED;
+    return { title: t('Deceased'), color: 'red' };
   }
   if (isActive) {
-    return PatientStatus.ACTIVE;
+    return { title: t('Active'), color: 'green' };
   }
-  return PatientStatus.InACTIVE;
+  return { title: t('Inactive'), color: 'gray' };
 };

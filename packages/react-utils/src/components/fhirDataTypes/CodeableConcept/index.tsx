@@ -2,7 +2,7 @@ import { CodeableConcept as TCodeableConcept } from '@smile-cdr/fhirts/dist/FHIR
 import { Tooltip } from 'antd';
 import { Coding } from '../Coding';
 import { Typography } from 'antd';
-import React from 'react';
+import React, { Fragment } from 'react';
 
 const { Text } = Typography;
 
@@ -17,14 +17,14 @@ export const CodeableConcept = (props: CodeableConceptProps) => {
   const codingsTitle = (
     <>
       {(coding ?? []).map((coding, index) => (
-        <>
-          <Coding key={`coding-${index}`} coding={coding}></Coding>,{' '}
-        </>
+        <Fragment key={`coding-${index}`}>
+          <Coding coding={coding}></Coding>,{' '}
+        </Fragment>
       ))}
     </>
   );
   return (
-    <Tooltip title={codingsTitle} color="white">
+    <Tooltip data-testid="concept-tooltip" title={codingsTitle} color="white">
       {text ? <Text>{text}</Text> : codingsTitle}
     </Tooltip>
   );

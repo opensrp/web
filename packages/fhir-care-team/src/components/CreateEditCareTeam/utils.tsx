@@ -222,16 +222,6 @@ export interface SelectOptions {
 }
 
 /**
- * filter practitioners select on search
- *
- * @param inputValue search term
- * @param option select option to filter against
- */
-export const selectFilterFunction = (inputValue: string, option?: SelectOptions) => {
-  return !!option?.label?.toLowerCase().includes(inputValue.toLowerCase());
-};
-
-/**
  * creates util function that given a set of resource ids, it can fetch
  * just those resources whose id are provided
  *

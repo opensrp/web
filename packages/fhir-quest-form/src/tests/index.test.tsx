@@ -16,7 +16,15 @@ import { openChoiceQuest, openChoiceQuestRes } from './fixtures';
 import { store } from '@opensrp/store';
 import { authenticateUser } from '@onaio/session-reducer';
 
-const qClient = new QueryClient();
+const qClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: false,
+      cacheTime: 0,
+      staleTime: 0,
+    },
+  },
+});
 
 jest.mock('fhirclient', () => {
   return jest.requireActual('fhirclient/lib/entry/browser');
@@ -114,4 +122,56 @@ test('renders and submits a questionnaire response correctly', async () => {
 
   await waitForElementToBeRemoved(document.querySelector('.ant-spin'));
   expect(screen.getByText(/submit$/i)).toBeInTheDocument();
+});
+
+test('questionnaire api error', async () => {
+  const history = createMemoryHistory();
+  history.push('/123/Questionnaire');
+  const props = {
+    fhirBaseURL: 'https://test.server.org',
+  };
+
+  nock(props.fhirBaseURL).get('/QuestionnaireResponse/321').reply(200, openChoiceQuestRes);
+  nock(props.fhirBaseURL)
+    .get('/Questionnaire/123')
+    .replyWithError('Questionnaires not working tonight');
+
+  render(
+    <Router history={history}>
+      <QueryClientProvider client={qClient}>
+        <App {...props} />
+      </QueryClientProvider>
+    </Router>
+  );
+
+  await waitForElementToBeRemoved(document.querySelector('.ant-spin'));
+  expect(document.body.textContent).toMatchInlineSnapshot(
+    `"Questionnaire Response resource submitted successfullyErrorFetchError: request to https://test.server.org/Questionnaire/123 failed, reason: Questionnaires not working tonightGo backGo home"`
+  );
+});
+
+test('questionnaire response api error', async () => {
+  const history = createMemoryHistory();
+  history.push('/321/QuestionnaireResponse');
+  const props = {
+    fhirBaseURL: 'https://test.server.org',
+  };
+
+  nock(props.fhirBaseURL)
+    .get('/QuestionnaireResponse/321')
+    .replyWithError('Questionnaire response errors');
+  nock(props.fhirBaseURL).get('/Questionnaire/123').reply(200, openChoiceQuest);
+
+  render(
+    <Router history={history}>
+      <QueryClientProvider client={qClient}>
+        <App {...props} />
+      </QueryClientProvider>
+    </Router>
+  );
+
+  await waitForElementToBeRemoved(document.querySelector('.ant-spin'));
+  expect(document.body.textContent).toMatchInlineSnapshot(
+    `"Questionnaire Response resource submitted successfullyErrornullGo backGo home"`
+  );
 });

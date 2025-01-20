@@ -92,7 +92,7 @@ export const BaseQuestRForm = (props: BaseQuestRFormProps) => {
     return <Spin size="large" className="custom-spinner" />;
   }
 
-  if (error && !data && questRespError && !questResp) {
+  if ((error && !data) || (questRespError && !questResp)) {
     return <BrokenPage errorMessage={`${error}`} />;
   }
 

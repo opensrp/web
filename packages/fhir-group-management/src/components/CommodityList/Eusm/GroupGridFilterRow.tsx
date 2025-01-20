@@ -22,7 +22,7 @@ export const GroupGridFilerRow = (props: GroupGridFilerRowProps) => {
     <div className="filter-row" data-testid="filter-row">
       <Space size={'large'}>
         <Trans t={t} i18nKey="attractiveFilter">
-          <Space>
+          <Space data-testid="asset-filter">
             Asset:
             <Radio.Group
               size="small"
@@ -50,7 +50,7 @@ export const GroupGridFilerRow = (props: GroupGridFilerRowProps) => {
           </Space>
         </Trans>
         <Trans t={t} i18nKey="groupStatusFilter">
-          <Space>
+          <Space data-testid="group-filter">
             Status:
             <Radio.Group
               size="small"

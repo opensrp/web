@@ -33,5 +33,9 @@ describe('location-management/src/components/AllLocationListFlat/utils', () => {
     };
     const resourcesById = { '1': { id: '1', name: parentName }, '3509': resource };
     expect(getResourceParentName(resource, resourcesById)).toEqual(parentName);
+    expect(getResourceParentName(resource, {})).toEqual('');
+    expect(getResourceParentName({ partOf: { reference: 'Location/1', display: '' } }, {})).toEqual(
+      ''
+    );
   });
 });
