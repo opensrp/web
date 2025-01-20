@@ -10,20 +10,18 @@ COPY ./ /project
 WORKDIR /project
 ENV PATH /project/node_modules/.bin:$PATH
 ENV NODE_OPTIONS --max_old_space_size=4096
-
+RUN corepack enable
 RUN chown -R node .
 USER node
-
-RUN cp /project/app/.env.sample /project/app/.env \
-  && yarn
-
+RUN cp /project/app/.env.sample /project/app/.env
+RUN yarn
 USER root
 RUN chown -R node .
 USER node
 RUN yarn lerna run build
 
 
-FROM node:20-alpine as nodejsbuild
+FROM nikolaik/python-nodejs:python3.13-nodejs22-slim as nodejsbuild
 
 RUN corepack enable
 
@@ -36,13 +34,16 @@ RUN yarn && yarn tsc && npm prune -production --legacy-peer-deps
 RUN rm -rf ./node_modules/typescript
 
 
-
-FROM nikolaik/python-nodejs:python3.12-nodejs20-alpine as final
+FROM nikolaik/python-nodejs:python3.13-nodejs22-slim as final
 
 RUN corepack enable
 
 # Use tini for NodeJS application https://github.com/nodejs/docker-node/blob/master/docs/BestPractices.md#handling-kernel-signals
-RUN apk add --no-cache tini curl libmagic
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    tini \
+    curl \
+    libmagic-dev \
+    && rm -rf /var/lib/apt/lists/*
 
 # confd
 RUN curl -sSL -o /usr/local/bin/confd https://github.com/kelseyhightower/confd/releases/download/v0.16.0/confd-0.16.0-linux-amd64 \
@@ -72,4 +73,4 @@ EXPOSE 3000
 
 CMD [ "/bin/sh", "-c", "/usr/local/bin/app.sh && node /usr/src/app/dist" ]
 
-ENTRYPOINT ["/sbin/tini", "--"]
+ENTRYPOINT ["/bin/tini", "--"]
